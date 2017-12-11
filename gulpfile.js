@@ -18,9 +18,7 @@ gulp.task('compile', () => {
 gulp.task('start', ['compile'], () => {
     electron.start();
 
-    gulp.watch(frontend+'/**/*.{html,css}', electron.reload);
-
-    gulp.watch(frontend+'/**/*.js', ['compile']);
+    gulp.watch(frontend+'/**/*.{html,css,js}', ['compile', electron.reload]);
 
     gulp.watch(backend+'/**/*.js', electron.restart);
 });
