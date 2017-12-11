@@ -5,6 +5,7 @@ const url = require('url');
 let window;
 
 function createWindow() {
+    window = new BrowserWindow({width:1280, height:960});
     window.loadURL(__dirname+'/../build/index.html');
 
     Menu.setApplicationMenu(null);
