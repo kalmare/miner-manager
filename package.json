@@ -1,0 +1,32 @@
+{
+  "name": "miner-manager",
+  "version": "1.0.0",
+  "description": "A manager of cpuminer and cudaminer",
+  "main": "src/main.js",
+  "scripts": {
+    "compile": "gulp compile",
+    "start": "gulp start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kalmare/miner-manager.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kalmare/miner-manager/issues"
+  },
+  "homepage": "https://github.com/kalmare/miner-manager#readme",
+  "dependencies": {
+    "electron": "^1.7.9"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "electron-connect": "^0.6.2",
+    "foundation-sites": "^6.4.4-rc1",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.0"
+  }
+}
