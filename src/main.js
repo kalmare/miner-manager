@@ -12,6 +12,11 @@ function createWindow() {
     window.on('closed', () => {
         window = null;
     });
+
+    window.webContents.on('new-window', (event, url) => {
+        event.preventDefault();
+        shell.openExternal(url);
+    });
 }
 
 app.on('ready', createWindow);
