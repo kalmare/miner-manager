@@ -19,7 +19,8 @@
   },
   "homepage": "https://github.com/kalmare/miner-manager#readme",
   "dependencies": {
-    "electron": "^1.7.9"
+    "electron": "^1.7.9",
+    "jquery": "^3.2.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

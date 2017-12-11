@@ -4,13 +4,111 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>MINER MANAGER</title>
+        <title>Bitzeny Miner Manager</title>
 
         <link rel="stylesheet" href="../node_modules/foundation-sites/dist/css/foundation.min.css">
     </head>
     <body>
-        <h1>Hello world!</h1>
+        <div class="grid-container">
+            <h3>CPUMiner</h3>
+            <div id="cpuminer">
+                <div class="grid-x grid-padding-x">
+                    <div class="medium-12 cell">
+                        <label>Path
+                            <input type="text" id="path" placeholder="C:\cpuminer\minerd.exe">
+                        </label>
+                    </div>
+                    <div class="medium-12 cell">
+                        <label>Pool
+                            <select id="pool">
+                                <optgroup label="LA POOL">
+                                    <option value="stratum+tcp://jp.lapool.me:3014">LA POOL 低難易度(低性能CPU)</option>
+                                    <option value="stratum+tcp://jp.lapool.me:3114">LA POOL 高難易度(高性能CPU)</option>
+                                </optgroup>
+                                <optgroup label="MD POOL">
+                                    <option value="stratum+tcp://mining-zeny.mdpool.info:6969">MD POOL 低難易度(低性能CPU)</option>
+                                    <option value="stratum+tcp://mining-zeny.mdpool.info:6960">MD POOL 中難易度(中性能CPU)</option>
+                                    <option value="stratum+tcp://mining-zeny.mdpool.info:6961">MD POOL 高難易度(高性能CPU)</option>
+                                    <option value="stratum+tcp://mining-zeny.mdpool.info:6962">MD POOL 超高難易度(超高性能CPU)</option>
+                                </optgroup>
+                                <optgroup label="うさぎコイン発掘所">
+                                    <option value="stratum+tcp://bunnymining.work:19332">うさぎコイン発掘所 低難易度(低性能CPU)</option>
+                                    <option value="stratum+tcp://bunnymining.work:19333">うさぎコイン発掘所 中難易度(中性能CPU)</option>
+                                    <option value="stratum+tcp://bunnymining.work:19334">うさぎコイン発掘所 高難易度(高性能CPU)</option>
+                                </optgroup>
+                                <optgroup label="みそスープール">
+                                    <option value="stratum+tcp://stratum.misosi.ru:16002">みそスープール 低難易度(低性能CPU)</option>
+                                    <option value="stratum+tcp://stratum.misosi.ru:16001">みそスープール 高難易度(高性能CPU)</option>
+                                </optgroup>
+                                <optgroup label="寛永通宝">
+                                    <option value="stratum+tcp://bitzenypool.work:19666">寛永通宝</option>
+                                </optgroup>
+                                <optgroup label="大人の自由研究">
+                                    <option value="stratum+tcp://ukkey3.space:3333">大人の自由研究</option>
+                                </optgroup>
+                                <optgroup label="その他">
+                                    <option value="other">その他</option>
+                                </optgroup>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="medium-12 cell" style="display: none;" id="other_pool">
+                        <label>Pool
+                            <input type="text" id="pool_raw" placeholder="example.net:1234">
+                        </label>
+                    </div>
+                    <div class="medium-4 cell">
+                        <label>Algo
+                            <select id="algo">
+                                <option value="yescrypt">yescrypt</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="medium-2 cell">
+                        <label>CPU Cores
+                            <select id="cores">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                            </select></label>
+                    </div>
+                    <div class="medium-4 cell">
+                        <label>Username
+                            <input type="text" id="user" placeholder="username">
+                        </label>
+                    </div>
+                    <div class="medium-4 cell">
+                        <label>Worker
+                            <input type="text" id="worker" placeholder="worker">
+                        </label>
+                    </div>
+                    <div class="medium-4 cell">
+                        <label>Password
+                            <input type="text" id="password" placeholder="password">
+                        </label>
+                    </div>
+                    <div class="medium-12 cell">
+                        <button type="button" class="button" id="run">Run</button>
+                    </div>
+                </div>
+                <div class="medium-12" id="status"></div>
+            </div>
+        </div>
         <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript">window.$ = window.jQuery = require('jquery');</script>
         <script src="../node_modules/foundation-sites/dist/js/foundation.min.js"></script>
         <script src="index.js"></script>
     </body>
