@@ -7,15 +7,16 @@
         <title>Bitzeny Miner Manager</title>
 
         <link rel="stylesheet" href="../node_modules/foundation-sites/dist/css/foundation.min.css">
+        <link rel="stylesheet" href="index.css">
     </head>
     <body>
         <div class="grid-container">
-            <h3>CPUMiner</h3>
+            <h3>Bitzeny Miner Manager</h3>
             <div id="cpuminer">
                 <div class="grid-x grid-padding-x">
                     <div class="medium-12 cell">
-                        <label>Path
-                            <input type="text" id="path" placeholder="C:\cpuminer\minerd.exe">
+                        <label>Miner
+                            <input type="text" id="miner" placeholder="C:\cpuminer\minerd.exe">
                         </label>
                     </div>
                     <div class="medium-12 cell">
@@ -52,14 +53,14 @@
                             </select>
                         </label>
                     </div>
-                    <div class="medium-12 cell" style="display: none;" id="other_pool">
+                    <div class="medium-12 cell" id="other_pool">
                         <label>Pool
                             <input type="text" id="pool_raw" placeholder="example.net:1234">
                         </label>
                     </div>
                     <div class="medium-2 cell">
-                        <label>CPU Cores
-                            <select id="cores">
+                        <label>Threads
+                            <select id="threads">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -95,11 +96,53 @@
                     </div>
                     <div class="medium-12 cell">
                         <button type="button" class="button" id="run">Run</button>
+                        <button type="button" class="button" id="save">Save</button>
                     </div>
                 </div>
-                <div class="medium-12" id="status"></div>
+                <div class="medium-12">
+                    <h5>Info</h5>
+                    <table>
+                        <tbody>
+                        <tr>
+                            <td>Hashrate</td>
+                            <td id="hashrate">0.00 khash/s</td>
+                        </tr>
+                        <tr>
+                            <td>Valid</td>
+                            <td id="valid">0</td>
+                        </tr>
+                        <tr>
+                            <td>Invalid</td>
+                            <td id="invalid">0</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="medium-12">
+                    <h5>PC Info</h5>
+                    <table>
+                        <tbody>
+                        <tr>
+                            <td>OS</td>
+                            <td id="os"></td>
+                        </tr>
+                        <tr>
+                            <td>CPU</td>
+                            <td id="cpu"></td>
+                        </tr>
+                        <tr>
+                            <td>RAM</td>
+                            <td id="ram"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
+        <hr>
+        <footer>
+            <a href="https://github.com/kalmare/miner-manager" target="_blank">kalmare/miner-manager</a>
+        </footer>
         <script src="../node_modules/jquery/dist/jquery.min.js"></script>
         <script type="text/javascript">window.$ = window.jQuery = require('jquery');</script>
         <script src="../node_modules/foundation-sites/dist/js/foundation.min.js"></script>

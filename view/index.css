@@ -1,0 +1,8 @@
+footer {
+    font-size: 0.6em;
+    text-align: center;
+}
+
+div#other_pool {
+    display: none;
+}
