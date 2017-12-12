@@ -1,6 +1,6 @@
 # miner-manager
 A manager of cpuminer for bitzeny build by Electron.
-![SS](https://i.imgur.com/X9iLI0T.png)
+![SS](https://i.imgur.com/X9iLI0Tl.png)
 
 ## Requirement
 - node
