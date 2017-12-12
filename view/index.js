@@ -98,7 +98,7 @@ $(() => {
 
         storage.set('config', data, error => {
             if (error) throw error;
-            alertify.success("Saved configuration successfully!");
+            alertify.success("Configuration saved successfully!");
         });
     });
 });
