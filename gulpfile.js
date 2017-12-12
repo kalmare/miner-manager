@@ -6,13 +6,28 @@ const backend = 'src';
 const frontend = 'view';
 const build = 'build';
 
-gulp.task('compile', () => {
-    gulp.src(frontend+'/**/*.{html,css}')
-        .pipe(gulp.dest(build));
+gulp.task('compile', callback => {
+    const wait_max = 2;
+    let wait_count = 0;
 
-    return gulp.src(frontend+'/**/*.js')
+    function onEnd() {
+        if (wait_max === ++wait_count) {
+            callback();
+        }
+    }
+
+    gulp.src(frontend+'/**/*.{html,css}')
+        .pipe(gulp.dest(build))
+        .on('end', () => {
+            onEnd();
+        });
+
+    gulp.src(frontend+'/**/*.js')
         .pipe(babel())
-        .pipe(gulp.dest(build));
+        .pipe(gulp.dest(build))
+        .on('end', () => {
+            onEnd();
+        });
 });
 
 gulp.task('start', ['compile'], () => {
