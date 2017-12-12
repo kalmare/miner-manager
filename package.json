@@ -2,7 +2,7 @@
   "name": "miner-manager",
   "version": "1.0.0",
   "description": "A manager of cpuminer for bitzeny",
-  "main": "src/main.js",
+  "main": "app/src/main.js",
   "scripts": {
     "compile": "gulp compile",
     "start": "gulp start"

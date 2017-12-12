@@ -1,4 +1,4 @@
-require('electron-connect').client.create();
+// require('electron-connect').client.create();
 const {spawn} = require('child_process');
 const os = require('os');
 const platform = require('platform');
