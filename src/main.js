@@ -28,7 +28,7 @@ function checkUpdate() {
         protocol: 'https:',
         hostname: 'karquid.net',
         port: 443,
-        path: '/znymmgr/latest_version'
+        path: '/znymmgr/latest_version?date='+Math.floor((new Date()).getTime() / 1000)
     });
     request.end();
 
