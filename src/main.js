@@ -10,8 +10,6 @@ function createWindow() {
 
     Menu.setApplicationMenu(null);
 
-    window.openDevTools();
-
     window.on('closed', () => {
         window = null;
     });
@@ -40,7 +38,7 @@ function checkUpdate() {
             res += chunk;
         });
         response.on('end', () => {
-            if (JSON.parse(res)['version'] === app.getVersion()) {
+            if (JSON.parse(res)['version'] !== app.getVersion()) {
                 window.webContents.send(
                     'can_update',
                     JSON.parse(res)['version']
