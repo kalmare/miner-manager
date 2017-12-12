@@ -1,4 +1,5 @@
 require('electron-connect').client.create();
+const {ipcRenderer} = require('electron');
 const {spawn} = require('child_process');
 const os = require('os');
 const platform = require('platform');
@@ -100,4 +101,9 @@ $(() => {
             alertify.success("Saved configuration successfully!");
         });
     });
+});
+
+ipcRenderer.on('can_update', (event, arg) => {
+    $('#alert').addClass('callout alert');
+    $('#alert').html("<h5>Your manager is outdated!</h5><p>Bitzeny Miner Manager にアップデートがあります: "+arg+" <a href='https://github.com/kalmare/miner-manager/releases'>Download</a></p>");
 });
