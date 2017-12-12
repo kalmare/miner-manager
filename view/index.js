@@ -53,7 +53,7 @@ $(() => {
                 console.log(command);
                 console.log(args);
 
-                child = spawn(command, args);
+                child = spawn(command, args); // TODO: Move to Main process
 
                 // I don't know why all messages to be output to stderr...
                 child.stderr.on('data', data_bytes => {
