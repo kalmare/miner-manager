@@ -8,32 +8,53 @@ const alertify = require('alertify.js');
 
 $(() => {
     $(document).foundation();
+    // Form
+    const $miner = $('#miner');
+    const $pool = $('#pool');
+    const $pool_raw = $('#pool_raw');
+    const $threads = $('#threads');
+    const $user = $('#user');
+    const $worker = $('#worker');
+    const $password = $('#password');
+    const $other_pool = $('#other_pool');
+
+    // Information table
+    const $os = $('td#os');
+    const $ram = $('td#ram');
+    const $cpu = $('td#cpu');
+    const $hashrate = $('td#hashrate');
+    const $valid = $('td#valid');
+    const $invalid = $('td#invalid');
+
+    // Buttons
+    const $run = $('#run');
+    const $save = $('#save');
 
     storage.get('config', (error, data) => {
         if (error) {
             reject(error);
         }
 
-        $('#miner').val(data['miner']);
-        $('#pool').val(data['pool']);
-        $('#pool_raw').val(data['other_pool']);
-        $('#threads').val(data['threads']);
-        $('#user').val(data['user']);
-        $('#worker').val(data['worker']);
-        $('#password').val(data['password']);
-        if ($('#pool').val() === 'other') {
-            $('#other_pool').css('display', 'block');
+        $miner.val(data['miner']);
+        $pool.val(data['pool']);
+        $pool_raw.val(data['other_pool']);
+        $threads.val(data['threads']);
+        $user.val(data['user']);
+        $worker.val(data['worker']);
+        $password.val(data['password']);
+        if ($pool.val() === 'other') {
+            $other_pool.css('display', 'block');
         }
     });
 
     // Collect miner's info
-    $('td#os').text(platform.os.toString());
-    $('td#ram').text(Math.round(os.totalmem() / 1024 / 1024 / 1024) + ' GB');
-    $('td#cpu').text(os.cpus()[0]['model']);
-    $('#threads').val(os.cpus().length);
+    $os.text(platform.os.toString());
+    $ram.text(Math.round(os.totalmem() / 1024 / 1024 / 1024) + ' GB');
+    $cpu.text(os.cpus()[0]['model']);
+    $threads.val(os.cpus().length);
 
     // Show raw ip:port area when selected other pool
-    $('#pool').change(() => {
+    $pool.change(() => {
         if ($('#pool').val() === "other") {
             $('#other_pool').css('display', 'block');
         } else {
@@ -44,11 +65,11 @@ $(() => {
     let child = null;
 
     // Run miner
-    $('#run').click(() => {
-        $('#run').text((i, text) => {
+    $run.click(() => {
+        $run.text((i, text) => {
             if (text === "Run") {
-                const command = $('#miner').val();
-                const args = ["-a", "yescrypt", "-o", (() => { return $('#pool').val() === "other" ? $('#pool_raw').val() : $('#pool').val() })(), "-u", $('#user').val() + "." + $('#worker').val(), "-p", $('#password').val(), "-t", $('#threads').val()];
+                const command = $miner.val();
+                const args = ["-a", "yescrypt", "-o", (() => { return $pool.val() === "other" ? $pool_raw.val() : $pool.val() })(), "-u", $user.val() + "." + $worker.val(), "-p", $password.val(), "-t", $threads.val()];
 
                 console.log(command);
                 console.log(args);
@@ -69,15 +90,15 @@ $(() => {
 
                     const match = data.match(regex);
                     if (match !== null) {
-                        $('td#hashrate').text(match[6]);
-                        $('td#valid').text(match[3]);
-                        $('td#invalid').text(match[4] - match[3]);
+                        $hashrate.text(match[6]);
+                        $valid.text(match[3]);
+                        $invalid.text(match[4] - match[3]);
                     }
                 });
             } else {
-                $('td#hashrate').text("0.00 khash/s");
-                $('td#valid').text(0);
-                $('td#invalid').text(0);
+                $hashrate.text("0.00 khash/s");
+                $valid.text(0);
+                $invalid.text(0);
                 child.kill('SIGINT');
             }
             return text === "Run" ? "Stop" : "Run";
@@ -85,15 +106,15 @@ $(() => {
     });
 
     // Save config
-    $('#save').click(() => {
+    $save.click(() => {
         const data = {
-            'miner': $('#miner').val(),
-            'pool': $('#pool').val(),
-            'other_pool': $('#pool_raw').val(),
-            'threads': $('#threads').val(),
-            'user': $('#user').val(),
-            'worker': $('#worker').val(),
-            'password': $('#password').val()
+            'miner': $miner.val(),
+            'pool': $pool.val(),
+            'other_pool': $pool_raw.val(),
+            'threads': $threads.val(),
+            'user': $user.val(),
+            'worker': $worker.val(),
+            'password': $password.val()
         };
 
         storage.set('config', data, error => {
@@ -104,6 +125,9 @@ $(() => {
 });
 
 ipcRenderer.on('can_update', (event, arg) => {
-    $('#alert').addClass('callout alert');
-    $('#alert').html("<h5>Your manager is outdated!</h5><p>Bitzeny Miner Manager にアップデートがあります: "+arg+" <a href='https://github.com/kalmare/miner-manager/releases'>Download</a></p>");
+    // Alert
+    const $alert = $('#alert');
+
+    $alert.addClass('callout alert');
+    $alert.html("<h5>Your manager is outdated!</h5><p>Bitzeny Miner Manager にアップデートがあります: "+arg+" <a href='https://github.com/kalmare/miner-manager/releases'>Download</a></p>");
 });
